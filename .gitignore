@@ -1,23 +1,14 @@
-# Compiled class file
-*.class
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workplace
 
-# Log file
-*.log
+# Local History for Visual Studio Code
+.history/
 
-# BlueJ files
-*.ctxt
+# nodejs npm module
+/node_modules/
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# 目标文件夹
+/dist/
