@@ -13,11 +13,25 @@
 }
 
 .chooseModel{
-    margin: 20px;
     float: right;
     padding-top: 150px;
     padding-right: 200px;
     font-size: 18px;
     font-family: serif;
     text-align: center;
+}
+
+input#filename1 {
+    width: 150px;
+    float: left;
+}
+button#fileChooseBtn1 {
+    float: revert;
+}
+input#filename2 {
+    width: 150px;
+    float: left;
+}
+button#fileChooseBtn2 {
+    float: revert;
 }

@@ -31,13 +31,19 @@
                 <img src="#" class="img-thumbnail">
 
                 <div class="chooseModel">
+
                     <form method="post">
                         <h3>模型选择</h3>
                         <input type="radio" name="model1" value="随机森林模型" class="chooseItem" checked />随机森林模型<br/>
                         <input type="radio" name="model1" value="深度神经网络模型" class="chooseItem" />深度神经网络模型<br/>
                         <input type="radio" name="model1" value="K-邻近模型" class="chooseItem" />K-邻近模型    
-                    </form>
-                    <br/>
+                    </form><br/>
+
+                    <div class="chooseFile">
+                        <button id="fileChooseBtn1" class="btn btn-default" type="button">选择数据集</button>
+                        <input id="filename1" type="text" class="form-control" readonly="readonly">
+                    </div><br/>
+
                     <button type="button" class="btn btn-primary chooseItem">模型训练</button>
                 </div>
                 
@@ -54,6 +60,12 @@
                         <input type="radio" name="model1" value="K-邻近模型" class="chooseItem" />K-邻近模型    
                     </form>
                     <br/>
+
+                    <div class="chooseFile">
+                        <button id="fileChooseBtn2" class="btn btn-default" type="button">选择数据集</button>
+                        <input id="filename2" type="text" class="form-control" readonly="readonly">
+                    </div><br/>
+
                     <button type="button" class="btn btn-primary">开始预测</button>
                     <button type="button" class="btn btn-primary">保存预测报告</button>
                 </div>
