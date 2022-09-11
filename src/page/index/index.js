@@ -14,28 +14,30 @@ function upload(){
 }
 
 //选择数据集
-$('#fileChooseBtn1').on('click',function(){
-    if(document.getElementById('file')){
-        document.getElementById('file').remove();
-    }
-    upload();
-    document.querySelector('#file').addEventListener('change',e=>{
-        for(let entry of e.target.files){
-            document.getElementById('filename1').value=entry.name;
-            console.log(entry);//打印File对象
+$(function(){
+    $('#fileChooseBtn1').on('click',function(){
+        if(document.getElementById('file')){
+            document.getElementById('file').remove();
         }
+        upload();
+        document.querySelector('#file').addEventListener('change',e=>{
+            for(let entry of e.target.files){
+                document.getElementById('filename1').value=entry.name;
+                console.log(entry);//打印File对象
+            }
+        })
     })
-})
-$('#fileChooseBtn2').on('click',function(){
-    if(document.getElementById('file')){
-        document.getElementById('file').remove();
-    }
-    upload();
-    document.querySelector('#file').addEventListener('change',e=>{
-        for(let entry of e.target.files){
-            document.getElementById('filename2').value=entry.name;
-            console.log(entry.name,entry.webkitRelativePath);
+    $('#fileChooseBtn2').on('click',function(){
+        if(document.getElementById('file')){
+            document.getElementById('file').remove();
         }
+        upload();
+        document.querySelector('#file').addEventListener('change',e=>{
+            for(let entry of e.target.files){
+                document.getElementById('filename2').value=entry.name;
+                console.log(entry.name,entry.webkitRelativePath);
+            }
+        })
     })
 })
 
@@ -58,15 +60,6 @@ $(function(){
 
         //random
         if(randomBtn.checked){
-            /**
-             * $.ajax({
-                type        :"GET",
-                url         :"http://101.34.37.235:8000/trainingresult/",
-                success     :function(data){
-                    console.log(data)
-                }
-            });
-             */
             $.ajax({
                 type        :"POST",
                 url         :"http://101.34.37.235:8000/rf/training/",
@@ -152,4 +145,39 @@ $(function(){
         }
 
     })
+})
+
+//获取训练结果列表
+$(function(){
+    $.ajax({
+        type        :"GET",
+        url         :"http://101.34.37.235:8000/trainingresult/",
+        success     :function(data){
+            console.log(data);
+
+            var str="";//声明str，防止产生undefined
+            var type="";
+            for(var i=0;i<data.length;i++){
+
+                if(data[i].type==="rf")
+                    type="随机森林";
+                else if(data[i].type==="dnn")
+                    type="深度学习";
+                else if(data[i].type==="knn")
+                    type="K-近邻";
+
+                str+="<tr>"+
+                    "<td>"+(i+1)+"</td>"+
+                     "<td>"+type+"</td>"+
+                     "<td>"+data[i].filename+"</td>"+
+                     "<td>"+data[i].auc+"</td>"+
+                     "<td>"+data[i].macro+"</td>"+
+                     "<td>"+data[i].macro_recall+"</td>"+
+                     "<td>"+data[i].weighted+"</td>"+
+                     "<td>"+data[i].time+"</td>"
+                     +"</tr>";
+            }
+            testResult.innerHTML=str;//将数据写入html中
+        }
+    });
 })

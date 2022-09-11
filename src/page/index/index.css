@@ -35,3 +35,9 @@ input#filename2 {
 button#fileChooseBtn2 {
     float: revert;
 }
+
+.table {
+    width: 90%;
+    max-width: 90%;
+    margin: 30px 20px 20px 30px;
+}

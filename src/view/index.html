@@ -23,6 +23,11 @@
                     缺陷预测
                 </a>
             </li>
+            <li>
+                <a href="#resultSet" data-toggle="tab">
+                    训练结果列表
+                </a>
+            </li>
         </ul>
         
         <div id="myTabContent" class="tab-content">
@@ -50,7 +55,7 @@
             </div>
     
             <div class="tab-pane fade" id="predict">
-            <img id="img_predict" src="#" class="img-thumbnail">
+                <img id="img_predict" src="#" class="img-thumbnail">
 
                 <div class="chooseModel">
                     <form method="post">
@@ -68,7 +73,25 @@
                     <button id="predictBtn" type="button" class="btn btn-primary">开始预测</button>
                     <button type="button" class="btn btn-primary">保存预测报告</button>
                 </div>
+            </div>
 
+            <div class="tab-pane fade" id="resultSet">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>算法</th>
+                            <th>数据集</th>
+                            <th>准确率</th>
+                            <th>精确率</th>
+                            <th>召回率</th>
+                            <th>f1值</th>
+                            <th>时间</th>
+                        </tr>
+                    </thead>
+                    <tbody id="testResult">
+                    </tbody>
+                </table>
             </div>
     
         </div>
