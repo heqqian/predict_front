@@ -149,35 +149,37 @@ $(function(){
 
 //获取训练结果列表
 $(function(){
-    $.ajax({
-        type        :"GET",
-        url         :"http://101.34.37.235:8000/trainingresult/",
-        success     :function(data){
-            console.log(data);
-
-            var str="";//声明str，防止产生undefined
-            var type="";
-            for(var i=0;i<data.length;i++){
-
-                if(data[i].type==="rf")
-                    type="随机森林";
-                else if(data[i].type==="dnn")
-                    type="深度学习";
-                else if(data[i].type==="knn")
-                    type="K-近邻";
-
-                str+="<tr>"+
-                    "<td>"+(i+1)+"</td>"+
-                     "<td>"+type+"</td>"+
-                     "<td>"+data[i].filename+"</td>"+
-                     "<td>"+data[i].auc+"</td>"+
-                     "<td>"+data[i].macro+"</td>"+
-                     "<td>"+data[i].macro_recall+"</td>"+
-                     "<td>"+data[i].weighted+"</td>"+
-                     "<td>"+data[i].time+"</td>"
-                     +"</tr>";
+    $('#toResultList').on('click',function(){
+        $.ajax({
+            type        :"GET",
+            url         :"http://101.34.37.235:8000/trainingresult/",
+            success     :function(data){
+                console.log(data);
+    
+                var str="";//声明str，防止产生undefined
+                var type="";
+                for(var i=0;i<data.length;i++){
+    
+                    if(data[i].type==="rf")
+                        type="随机森林";
+                    else if(data[i].type==="dnn")
+                        type="深度学习";
+                    else if(data[i].type==="knn")
+                        type="K-近邻";
+    
+                    str+="<tr>"+
+                        "<td>"+(i+1)+"</td>"+
+                         "<td>"+type+"</td>"+
+                         "<td>"+data[i].filename+"</td>"+
+                         "<td>"+data[i].auc+"</td>"+
+                         "<td>"+data[i].macro+"</td>"+
+                         "<td>"+data[i].macro_recall+"</td>"+
+                         "<td>"+data[i].weighted+"</td>"+
+                         "<td>"+data[i].time+"</td>"
+                         +"</tr>";
+                }
+                testResult.innerHTML=str;//将数据写入html中
             }
-            testResult.innerHTML=str;//将数据写入html中
-        }
-    });
+        });
+    })
 })
