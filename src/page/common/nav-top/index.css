@@ -1,0 +1,38 @@
+.nav-top{
+    background: #eee;
+    height: 60px;
+    line-height: 60px;
+}
+.nav-top .user-userinfo{
+    float: left;
+}
+.nav-top .user-userinfo .link{
+    margin-right: 5px;
+}
+.nav-top .user-userinfo .link-text{
+    margin-right: 5px;
+}
+.nav-top .user.login{
+    display: none;
+}
+
+
+.nav-top .nav-top-list{
+    float: right;
+}
+
+.nav-top .nav-top-list .nav-top-item{
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.nav-top-simple{
+    height: 60px;
+    line-height: 60px;
+}
+.nav-top-simple .logo{
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration:none;
+    color: #215496;
+}

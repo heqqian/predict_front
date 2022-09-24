@@ -1,4 +1,5 @@
 require('./index.css')
+require("page/common/index.js");
 
 //加载File文件选择对象
 function upload(){
@@ -12,6 +13,40 @@ function upload(){
     fileObj.click();
     console.log(fileObj);
 }
+// 获取弹窗
+var modal = document.getElementById('myModal');
+ //调用图片函数
+figureShow=function(resURL){
+    //在页面中弹出图片
+    //关键代码
+    document.getElementById("image").src = resURL;//注入图片src
+    modal.style.display = "block";
+    modal.onclick = function() { 
+        modal.style.display = "none";
+     }
+}
+
+// 获取图片img_train
+$(function(){
+    $('#img_train').on('click',function(){
+        modal.style.display = "block";
+        document.getElementById("image").src = this.src;
+        modal.onclick = function() { 
+            modal.style.display = "none";
+        }
+    })
+})
+// 获取图片img_predict
+$(function(){
+    $('#img_predict').on('click',function(){
+        modal.style.display = "block";
+        document.getElementById("image").src = this.src;
+        modal.onclick = function() { 
+            modal.style.display = "none";
+        }
+    })
+})
+
 
 //选择数据集
 $(function(){
@@ -69,6 +104,7 @@ $(function(){
                 success     :function(data){
                     console.log(data);
                     image.src=data.result_url;
+                    figureShow(image.src);
                 }
             });
         }
@@ -158,6 +194,7 @@ $(function(){
     
                 var str="";//声明str，防止产生undefined
                 var type="";
+               
                 for(var i=0;i<data.length;i++){
     
                     if(data[i].type==="rf")
@@ -167,7 +204,7 @@ $(function(){
                     else if(data[i].type==="knn")
                         type="K-近邻";
     
-                    str+="<tr>"+
+                    str+="<tr onclick='figureShow(\""+data[i].result_url+"\")' style='cursor:pointer'>"+
                         "<td>"+(i+1)+"</td>"+
                          "<td>"+type+"</td>"+
                          "<td>"+data[i].filename+"</td>"+
@@ -175,11 +212,12 @@ $(function(){
                          "<td>"+data[i].macro+"</td>"+
                          "<td>"+data[i].macro_recall+"</td>"+
                          "<td>"+data[i].weighted+"</td>"+
-                         "<td>"+data[i].time+"</td>"
+                         "<td>"+data[i].time+"</td>"+
                          +"</tr>";
                 }
                 testResult.innerHTML=str;//将数据写入html中
-            }
+            },
+            
         });
     })
 })

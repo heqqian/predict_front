@@ -20,7 +20,16 @@ const config= {
           {
             test:/\.(png|svg|jpg|gif)$/,
             use:['file-loader&name=images/[name].[ext]']
-          }
+          },
+          {
+            test: /\.htm$/i,
+            use: {
+              loader :'html-loader',
+              options:{
+                  esModule:false
+              }
+            }
+         },
         ]
     },
     plugins:[
@@ -34,6 +43,13 @@ const config= {
         })
     ],
     mode:'development',
+    resolve: {
+      //设置别名——注意路径问题
+        alias : {
+              page        :  path.resolve(__dirname, './src/page'),
+              view        :  path.resolve(__dirname, './src/view'),
+        }    
+    },
     devServer:{
         port:8080,
         static:"./dist"

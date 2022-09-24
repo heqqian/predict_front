@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <%= require('./common/common-head.htm') %>
     <meta charset="UTF-8">
     <title>软件缺陷预测</title>
     <!--
@@ -10,7 +11,8 @@
 </head>
 
 <body>
-
+    <%= require('./common/nav-top.htm') %>
+<div class="bg">
     <div id="background">
         <ul id="myTab" class="nav nav-tabs">
             <li class="active">
@@ -33,7 +35,7 @@
         <div id="myTabContent" class="tab-content">
     
             <div class="tab-pane fade in active" id="train">              
-                <img id="img_train" src="#" class="img-thumbnail">
+                <img id="img_train" class="img-thumbnail">
 
                 <div class="chooseModel">
 
@@ -55,7 +57,7 @@
             </div>
     
             <div class="tab-pane fade" id="predict">
-                <img id="img_predict" src="#" class="img-thumbnail">
+                <img id="img_predict" class="img-thumbnail">
 
                 <div class="chooseModel">
                     <form method="post">
@@ -96,10 +98,16 @@
     
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- 弹窗 -->
+    <div class="modal" id="myModal">
+        <!-- 弹窗内容 -->
+        <img class="modal-content" id="image" />
+    </div>
 
+
+    <%= require('./common/common-footer.htm') %>
 </body>
 
 

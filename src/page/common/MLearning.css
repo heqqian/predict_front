@@ -1,0 +1,7 @@
+/* 定宽布局 */
+.w {
+    width: 1380px;
+    margin: 0 auto; 
+    position: relative;
+    overflow: hidden;
+ }
