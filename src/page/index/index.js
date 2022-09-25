@@ -89,7 +89,7 @@ $(function(){
         var randomBtn=document.getElementById('random_train');
         var knnBtn=document.getElementById('knn_train');
         var dnnBtn=document.getElementById('dnn_train');
-
+        var kmeansBtn=document.getElementById('kmeans_train');
         //image
         var image=document.getElementById('img_train');
 
@@ -119,12 +119,39 @@ $(function(){
                 success     :function(data){
                     console.log(data);
                     image.src=data.result_url;
+                    figureShow(image.src);
                 }
             });
         }
         //dnn
         else if(dnnBtn.checked){
-
+            $.ajax({
+                type        :"POST",
+                url         :"http://101.34.37.235:8000/dnn/training/",
+                data        :formData, 
+                contentType :false,
+                processData :false,
+                success     :function(data){
+                    console.log(data);
+                    image.src=data.result_url;
+                    figureShow(image.src);
+                }
+            });
+        }
+        //kmeans
+        else if(kmeansBtn.checked){
+            $.ajax({
+                type        :"POST",
+                url         :"http://101.34.37.235:8000/kmeans/training/",
+                data        :formData, 
+                contentType :false,
+                processData :false,
+                success     :function(data){
+                    console.log(data);
+                    image.src=data.result_url;
+                    figureShow(image.src);
+                }
+            });
         }
 
     })
@@ -141,8 +168,9 @@ $(function(){
 
         //radioButton
         var randomBtn=document.getElementById('random_predict');
-        var knnBtn=document.getElementById('dnn_predict');
-        var dnnBtn=document.getElementById('knn_predict');
+        var knnBtn=document.getElementById('knn_predict');
+        var dnnBtn=document.getElementById('dnn_predict');
+        var kmeansBtn=document.getElementById('kmeans_predict');
 
         //image
         var image=document.getElementById('img_predict');
@@ -158,6 +186,7 @@ $(function(){
                 success     :function(data){
                     console.log(data);
                     image.src="data:image/png;base64,"+data.base64str;
+                    figureShow(image.src);
                 }
             });
         }
@@ -172,12 +201,39 @@ $(function(){
                 success     :function(data){
                     console.log(data);
                     image.src="data:image/png;base64,"+data.base64str;
+                    figureShow(image.src);
                 }
             });
         }
         //dnn
         else if(dnnBtn.checked){
-
+            $.ajax({
+                type        :"POST",
+                url         :"http://101.34.37.235:8000/dnn/predict/",
+                data        :formData, 
+                contentType :false,
+                processData :false,
+                success     :function(data){
+                    console.log(data);
+                    image.src="data:image/png;base64,"+data.base64str;
+                    figureShow(image.src);
+                }
+            });
+        }
+        //kmeans
+        else if(kmeansBtn.checked){
+            $.ajax({
+                type        :"POST",
+                url         :"http://101.34.37.235:8000/kmeans/predict/",
+                data        :formData, 
+                contentType :false,
+                processData :false,
+                success     :function(data){
+                    console.log(data);
+                    image.src="data:image/png;base64,"+data.base64str;
+                    figureShow(image.src);
+                }
+            });
         }
 
     })

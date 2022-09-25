@@ -10,4 +10,5 @@ web front for software defect prediction
 * html-webpack-plugin      :npm install --save-dev html-webpack-plugin
 * webpack-dev-server       :npm install --save-dev webpack-dev-server
 * file-loader和url-loader  :npm install --save-dev file-loader url-loader
+* html-loader              :npm install html-loader --save-dev
 3. 运行时先npm run build再npm run start
