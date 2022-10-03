@@ -259,6 +259,8 @@ $(function(){
                         type="深度学习";
                     else if(data[i].type==="knn")
                         type="K-近邻";
+                    else if(data[i].type==="kmeans")
+                        type="kmeans";
     
                     str+="<tr onclick='figureShow(\""+data[i].result_url+"\")' style='cursor:pointer'>"+
                         "<td>"+(i+1)+"</td>"+
