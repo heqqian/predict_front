@@ -90,6 +90,7 @@ $(function(){
         var knnBtn=document.getElementById('knn_train');
         var dnnBtn=document.getElementById('dnn_train');
         var kmeansBtn=document.getElementById('kmeans_train');
+        var ensembleBtn=document.getElementById('ensemble_train');
         //image
         var image=document.getElementById('img_train');
 
@@ -153,6 +154,21 @@ $(function(){
                 }
             });
         }
+        //ensemble
+        else if(ensembleBtn.checked){
+            $.ajax({
+                type        :"POST",
+                url         :"http://101.34.37.235:8000/ensemble/training/",
+                data        :formData,
+                contentType :false,
+                processData :false,
+                success     :function(data){
+                    console.log(data);
+                    image.src=data.result_url;
+                    figureShow(image.src);
+                }
+            });
+        }
 
     })
 })
@@ -171,7 +187,7 @@ $(function(){
         var knnBtn=document.getElementById('knn_predict');
         var dnnBtn=document.getElementById('dnn_predict');
         var kmeansBtn=document.getElementById('kmeans_predict');
-
+        var ensembleBtn=document.getElementById('ensemble_predict');
         //image
         var image=document.getElementById('img_predict');
 
@@ -235,6 +251,21 @@ $(function(){
                 }
             });
         }
+        //ensemble
+        else if(ensembleBtn.checked){
+            $.ajax({
+                type        :"POST",
+                url         :"http://101.34.37.235:8000/ensemble/predict/",
+                data        :formData,
+                contentType :false,
+                processData :false,
+                success     :function(data){
+                    console.log(data);
+                    image.src="data:image/png;base64,"+data.base64str;
+                    figureShow(image.src);
+                }
+            });
+        }
 
     })
 })
@@ -261,6 +292,8 @@ $(function(){
                         type="K-近邻";
                     else if(data[i].type==="kmeans")
                         type="kmeans";
+                    else if(data[i].type==="ensemble")
+                        type="集成学习";
     
                     str+="<tr onclick='figureShow(\""+data[i].result_url+"\")' style='cursor:pointer'>"+
                         "<td>"+(i+1)+"</td>"+
@@ -271,7 +304,7 @@ $(function(){
                          "<td>"+data[i].macro_recall+"</td>"+
                          "<td>"+data[i].weighted+"</td>"+
                          "<td>"+data[i].time+"</td>"+
-                         +"</tr>";
+                         "</tr>";
                 }
                 testResult.innerHTML=str;//将数据写入html中
             },
